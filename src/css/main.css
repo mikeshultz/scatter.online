@@ -48,6 +48,9 @@ a {
   a:visited {
     color: #F36161; }
 
+.light-text {
+  color: #fafafa; }
+
 .bg-warn {
   background: #F3BD61; }
 
