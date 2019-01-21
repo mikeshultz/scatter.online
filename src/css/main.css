@@ -10,7 +10,8 @@ html {
   min-height: 1000px; }
 
 body {
-  min-height: 1000px; }
+  min-height: 1000px;
+  background: #2B5471; }
 
 header {
   min-height: 1000px;
@@ -27,6 +28,10 @@ header {
       color: #FFF572; }
     header a:visited {
       color: #FFF572; }
+
+footer {
+  text-align: center;
+  padding-top: 3rem; }
 
 h1, h2, h3, h4, h5 {
   font-family: "Archivo Bold"; }

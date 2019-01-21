@@ -29,6 +29,7 @@ html {
 
 body {
     min-height: $min-height;
+    background: $primary;
 }
 
 header {
@@ -54,7 +55,10 @@ header {
     }
 }
 
-footer {}
+footer {
+    text-align: center;
+    padding-top: 3rem;
+}
 
 h1, h2, h3, h4, h5 {
     font-family: $branding-font-bold;
