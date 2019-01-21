@@ -1,0 +1,111 @@
+$primary: #2B5471;
+$reading-bg: #fafafa;
+$min-height: 1000px;
+$branding-font: "Archivo Regular";
+$branding-font-bold: "Archivo Bold";
+$dark-accent: #F36161;
+$light-accent: #FFF572;
+
+$warning: #F3BD61;
+$error: #F36161;
+
+@font-face {
+    font-family: "Archivo Regular";
+    src: url('fonts/Archivo-Regular.woff'),
+        url('fonts/Archivo-Regular.otf'),
+        url('fonts/Archivo-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Archivo Bold";
+    src: url('fonts/Archivo-Bold.woff'),
+        url('fonts/Archivo-Bold.otf'),
+        url('fonts/Archivo-Bold.ttf');
+}
+
+html {
+    min-height: $min-height;
+}
+
+body {
+    min-height: $min-height;
+}
+
+header {
+    min-height: $min-height;
+    color: $reading-bg;
+    background: $primary;
+    font-family: $branding-font;
+    font-size: 2rem;
+    padding: 5rem !important;
+
+    h1 {
+        font-family: $branding-font-bold;
+    }
+
+    a {
+        color: $light-accent;
+        &:link {
+            color: $light-accent;
+        }
+        &:visited {
+            color: $light-accent;
+        }
+    }
+}
+
+footer {}
+
+h1, h2, h3, h4, h5 {
+    font-family: $branding-font-bold;
+}
+
+dl {
+    dt {
+        color: $primary;
+        margin-top: 4rem;
+        .term {
+            background: $light-accent;
+            padding: 1rem;
+        }
+    }
+    dd {
+        margin-left: 0;
+    }
+}
+
+a {
+    color: $dark-accent;
+    &:link {
+        color: $dark-accent;
+    }
+    &:visited {
+        color: $dark-accent;
+    }
+}
+
+.bg-warn {
+    background: $warning;
+}
+
+.bg-error {
+    background: $error;
+}
+
+.main {
+    width: 100%;
+    color: $primary;
+    background: $reading-bg;
+}
+
+.row {
+    max-width: 100%;
+    .content {
+        padding: 3rem !important;
+    }
+}
+
+.small-text-block {
+    display: block;
+    padding: 1rem;
+}

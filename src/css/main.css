@@ -1,0 +1,69 @@
+@font-face {
+  font-family: "Archivo Regular";
+  src: url("fonts/Archivo-Regular.woff"), url("fonts/Archivo-Regular.otf"), url("fonts/Archivo-Regular.ttf"); }
+
+@font-face {
+  font-family: "Archivo Bold";
+  src: url("fonts/Archivo-Bold.woff"), url("fonts/Archivo-Bold.otf"), url("fonts/Archivo-Bold.ttf"); }
+
+html {
+  min-height: 1000px; }
+
+body {
+  min-height: 1000px; }
+
+header {
+  min-height: 1000px;
+  color: #fafafa;
+  background: #2B5471;
+  font-family: "Archivo Regular";
+  font-size: 2rem;
+  padding: 5rem !important; }
+  header h1 {
+    font-family: "Archivo Bold"; }
+  header a {
+    color: #FFF572; }
+    header a:link {
+      color: #FFF572; }
+    header a:visited {
+      color: #FFF572; }
+
+h1, h2, h3, h4, h5 {
+  font-family: "Archivo Bold"; }
+
+dl dt {
+  color: #2B5471;
+  margin-top: 4rem; }
+  dl dt .term {
+    background: #FFF572;
+    padding: 1rem; }
+
+dl dd {
+  margin-left: 0; }
+
+a {
+  color: #F36161; }
+  a:link {
+    color: #F36161; }
+  a:visited {
+    color: #F36161; }
+
+.bg-warn {
+  background: #F3BD61; }
+
+.bg-error {
+  background: #F36161; }
+
+.main {
+  width: 100%;
+  color: #2B5471;
+  background: #fafafa; }
+
+.row {
+  max-width: 100%; }
+  .row .content {
+    padding: 3rem !important; }
+
+.small-text-block {
+  display: block;
+  padding: 1rem; }

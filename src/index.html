@@ -1,0 +1,157 @@
+
+<div class="row">
+    <header class="column column-50">
+        <h1>Scatter</h1>
+        <p>
+            Scatter is a decentralized IPFS pinning service built on Ethereum. If you want to keep
+            files on IPFS but don't want to permanently keep a node running to pin your files, you
+            can offer to pay others a small fee to do it for you.
+        </p>
+        <p>
+            Scatter consists of a few key participants.  The <a href="#def-bidder">bidder</a>,
+            the <a href="#def-validator">validator</a>, and the
+            <a href="#def-hoster">hoster</a>.  Each one plays their part to keep a healthy
+            network.
+        </p>
+    </header>
+    <div class="content column">
+        <section id="definitions">
+            <h2>Definitions</h2>
+
+            <dl>
+                <dt>
+                    <a name="def-bidder"></a>
+                    <span class="term">Bidder</span>
+                </dt>
+                <dd>
+                    The bidder is the user who needs a file pinned. They use the dapp and their
+                    local IPFS node to add their file and make a bid for a hoster to pin their file.
+                </dd>
+
+                <dt>
+                    <a name="def-hoster"></a>
+                    <span class="term">Hoster</span>
+                </dt>
+                <dd>The hoster is the account that will actually be pinning the file.</dd>
+
+                <dt>
+                    <a name="def-validator"></a>
+                    <span class="term">Validator</span>
+                </dt>
+                <dd>
+                    The validator is another account that basically keeps everyone honest.  They
+                    check that the file is actually pinned during the requested duration.
+                </dd>
+            </dl>
+        </section>
+        <section id="components">
+            <h2>Components and Implementations</h2>
+            <ul>
+                <li>
+                    <a href="https://github.com/mikeshultz/scatter-contracts">
+                        Ethereum smart contracts
+                    </a>
+                    - The heart of the system. All key transactional data goes through these.
+                </li>
+                <li>
+                    <a href="https://github.com/mikeshultz/scatter-daemon">
+                        Scatter daemon
+                    </a>
+                    - This daemon is intended to run on a server and can act as a validator and
+                        hoster.
+                </li>
+                <li>
+                    Scatter dapp - The dapp that allows users to bid on their files to be pinned.
+                </li>
+            </ul>
+        </section>
+        <section id="status">
+            <h2>Current Status</h2>
+            <table>
+                <thead>
+                    <th>Component</th>
+                    <th>Status</th>
+                    <th>Description</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Contracts</td>
+                        <td><span class="small-text-block bg-warn">Prototype</span></td>
+                        <td>
+                            The contracts are in prototype form and are currently being tested with
+                            the other components.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Daemon</td>
+                        <td><span class="small-text-block bg-warn">Early Prototype</span></td>
+                        <td>
+                            The daemon prototype for hosting and validation is currently being
+                            built.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dapp</td>
+                        <td><span class="small-text-block bg-error">Planning</span></td>
+                        <td>
+                            The dapp is only in the planning phase.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section id="status">
+            <h2>Challenges</h2>
+            
+            <h3>Validation pool dilution</h3>
+            <p>
+                The validation pool is the pool of funds provided by the bidder to pay validators
+                for their work. The more validators that validate a pin, the lower the split between
+                the validators/
+            </p>
+            <pre><code>F = P/V</code></pre>
+            <p>
+                Where <code>F</code> is the fee payout, <code>P</code> is the validation pool funds,
+                and <code>V</code> is the participants acting as validators.
+            </p>
+            <p>
+                This should generally mean at some point it will not make sense for validators to
+                continue their work, which means it's up to the bidder to provide enough funds to
+                have their pin validated.
+            </p>
+            <p>
+                This mechanic is probably generally good enough but the bidder should be properly
+                instructed when choosing how much should be provided as a validation pool.
+            </p>
+
+            <h3>Proving files have been pinned</h3>
+            <p>
+                Listing IPFS pins of a remote node requires API access. The IPFS HTTP API was not
+                built with access control and security in mind. Leaving the API open allows anyone
+                to add or remove files, pins, and perform other operations that really shouldn't be
+                public.
+            </p>
+            <p>
+                For the daemon prototype,
+                <a href="https://github.com/mikeshultz/tornado-http-firewall">
+                    tornado-http-firewall
+                </a>
+                was created for use as a proxy to control access to the API calls. This is hopefully
+                <a href="https://github.com/ipfs/notes/issues/159">
+                    temporary as this functionality is planned for the IPFS daemon
+                </a>
+                but there's no way to know when (or if) that will be complete.
+            </p>
+            <p>
+                To add to the fun, these API calls can be spoofed or falsified pretty easily. A
+                malicious hoster could accept bids, and setup an API that responds showing that pins
+                were made when in fact nothing is actually there.  This is a lot of effort to go
+                through just to pretend to be actually hosting files, but would be a successful
+                attack that would lower the qulity of the network.
+            </p>
+            <p>
+                As of right now, this problem is still being worked on.
+            </p>
+        </section>
+    </div>
+</div>

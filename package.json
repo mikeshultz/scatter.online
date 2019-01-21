@@ -1,0 +1,30 @@
+{
+  "name": "scatter.online",
+  "version": "1.0.0",
+  "description": "Scatter introduction site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikeshultz/scatter.online.git"
+  },
+  "keywords": [
+    "ethereum",
+    "ipfs"
+  ],
+  "author": "Mike Shultz",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/mikeshultz/scatter.online/issues"
+  },
+  "homepage": "https://github.com/mikeshultz/scatter.online#readme",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-livereload": "^4.0.1",
+    "gulp-sass": "^4.0.2"
+  }
+}
