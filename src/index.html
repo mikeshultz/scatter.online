@@ -150,6 +150,12 @@
                 attack that would lower the qulity of the network.
             </p>
             <p>
+                The validator could <code>ipfs swarm connect</code> to the hoster's IPFS node and
+                then verify they can successfully <code>get</code> the file, but that doesn't
+                prove that the file is pinned on a specific node, just that this specific node has
+                access to the file.  This may be a useful additional step along with the API,
+                however.
+            <p>
                 As of right now, this problem is still being worked on.
             </p>
         </section>
