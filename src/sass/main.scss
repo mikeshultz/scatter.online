@@ -36,7 +36,6 @@ header {
     background: $primary;
     font-family: $branding-font;
     font-size: 2rem;
-    padding: 5rem !important;
 
     h1 {
         font-family: $branding-font-bold;
@@ -117,12 +116,33 @@ a {
     padding: 1rem;
 }
 
+.column, .columns {
+    width: 100%;
+    display: block;
+    float: left;
+    margin: 0 !important;
+    padding: 1rem !important;
+}
+
+.hide-mobile {
+    display: none;
+}
+
 @media (min-width: 550px) {
     header {
-        padding: 5rem 0 5rem 5rem !important
+        padding: 5rem 0 5rem 5rem !important;
+    }
+    .hide-mobile {
+        display: inherit;
     }
     .container {
         max-width: 100% !important;
         width: 100% !important;
+    }
+    .column, .columns {
+        width: 39.3333333333%;
+        display: block;
+        float: none;
+        padding: 5rem 0 5rem 5rem !important
     }
 }
