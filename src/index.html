@@ -24,23 +24,29 @@
                     <span class="term">Bidder</span>
                 </dt>
                 <dd>
-                    The bidder is the user who needs a file pinned. They use the dapp and their
-                    local IPFS node to add their file and make a bid for a hoster to pin their file.
+                    The bidder is the participant who needs a file pinned. They use the dapp and
+                    their local IPFS node to add their file and make a bid for a hoster to pin
+                    their file. They don't need to permanently keep their IPFS node up, just long
+                    enough for the hoster to get and pin their file.
                 </dd>
 
                 <dt>
                     <a name="def-hoster"></a>
                     <span class="term">Hoster</span>
                 </dt>
-                <dd>The hoster is the account that will actually be pinning the file.</dd>
+                <dd>
+                    The hoster is the participant that will actually be pinning the file. They run
+                    a hoster daemon and a permanent IPFS node to pin the bidders' files.
+                </dd>
 
                 <dt>
                     <a name="def-validator"></a>
                     <span class="term">Validator</span>
                 </dt>
                 <dd>
-                    The validator is another account that basically keeps everyone honest.  They
-                    check that the file is actually pinned during the requested duration.
+                    The validator the participant that basically keeps everyone honest.  They verify
+                    that the file is actually pinned by the hoster during the bidder's requested
+                    duration.
                 </dd>
             </dl>
         </section>
