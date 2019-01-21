@@ -6,15 +6,10 @@
   font-family: "Archivo Bold";
   src: url("fonts/Archivo-Bold.woff"), url("fonts/Archivo-Bold.otf"), url("fonts/Archivo-Bold.ttf"); }
 
-html {
-  min-height: 1000px; }
-
 body {
-  min-height: 1000px;
   background: #2B5471; }
 
 header {
-  min-height: 1000px;
   color: #fafafa;
   background: #2B5471;
   font-family: "Archivo Regular";
@@ -38,7 +33,7 @@ h1, h2, h3, h4, h5 {
 
 dl dt {
   color: #2B5471;
-  margin-top: 4rem; }
+  margin: 4rem 0 2rem; }
   dl dt .term {
     background: #FFF572;
     padding: 1rem; }
@@ -68,10 +63,18 @@ a {
   background: #fafafa; }
 
 .row {
-  max-width: 100%; }
+  background: #2B5471; }
   .row .content {
+    background: #fafafa;
     padding: 3rem !important; }
 
 .small-text-block {
   display: block;
   padding: 1rem; }
+
+@media (min-width: 550px) {
+  header {
+    padding: 5rem 0 5rem 5rem !important; }
+  .container {
+    max-width: 100% !important;
+    width: 100% !important; } }

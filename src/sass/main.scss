@@ -24,16 +24,14 @@ $error: #F36161;
 }
 
 html {
-    min-height: $min-height;
+    
 }
 
 body {
-    min-height: $min-height;
     background: $primary;
 }
 
 header {
-    min-height: $min-height;
     color: $reading-bg;
     background: $primary;
     font-family: $branding-font;
@@ -67,7 +65,7 @@ h1, h2, h3, h4, h5 {
 dl {
     dt {
         color: $primary;
-        margin-top: 4rem;
+        margin: 4rem 0 2rem;
         .term {
             background: $light-accent;
             padding: 1rem;
@@ -107,8 +105,9 @@ a {
 }
 
 .row {
-    max-width: 100%;
+    background: $primary;
     .content {
+        background: $reading-bg;
         padding: 3rem !important;
     }
 }
@@ -116,4 +115,14 @@ a {
 .small-text-block {
     display: block;
     padding: 1rem;
+}
+
+@media (min-width: 550px) {
+    header {
+        padding: 5rem 0 5rem 5rem !important
+    }
+    .container {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
 }
