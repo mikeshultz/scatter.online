@@ -130,7 +130,9 @@ a {
 
 @media (min-width: 550px) {
     header {
-        padding: 5rem 0 5rem 5rem !important;
+        .pad {
+            padding: 5rem !important;
+        }
     }
     .hide-mobile {
         display: inherit;
@@ -143,6 +145,5 @@ a {
         width: 39.3333333333%;
         display: block;
         float: none;
-        padding: 5rem 0 5rem 5rem !important
     }
 }

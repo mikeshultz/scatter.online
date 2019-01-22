@@ -82,8 +82,8 @@ a {
   display: none; }
 
 @media (min-width: 550px) {
-  header {
-    padding: 5rem 0 5rem 5rem !important; }
+  header .pad {
+    padding: 5rem !important; }
   .hide-mobile {
     display: inherit; }
   .container {
@@ -92,5 +92,4 @@ a {
   .column, .columns {
     width: 39.3333333333%;
     display: block;
-    float: none;
-    padding: 5rem 0 5rem 5rem !important; } }
+    float: none; } }
