@@ -85,7 +85,9 @@ a {
   header .pad {
     padding: 5rem !important; }
   .hide-mobile {
-    display: inherit; }
+    display: block; }
+  td.hide-mobile, th.hide-mobile {
+    display: table-cell; }
   .container {
     max-width: 100% !important;
     width: 100% !important; }

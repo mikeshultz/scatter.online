@@ -135,7 +135,10 @@ a {
         }
     }
     .hide-mobile {
-        display: inherit;
+        display: block;
+    }
+    td.hide-mobile, th.hide-mobile {
+        display: table-cell;
     }
     .container {
         max-width: 100% !important;
