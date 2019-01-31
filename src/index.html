@@ -9,10 +9,9 @@
                 can offer to pay others a small fee to do it for you.
             </p>
             <p>
-                Scatter consists of a few key participants.  The <a href="#def-bidder">bidder</a>,
-                the <a href="#def-validator">validator</a>, and the
-                <a href="#def-hoster">hoster</a>.  Each one plays their part to keep a healthy
-                network.
+                Scatter consists of two key participants.  The <a href="#def-bidder">bidder</a>,
+                and the <a href="#def-validator">pinner</a>.  Each one plays their part to keep a
+                healthy network.
             </p>
         </div>
     </header>
@@ -34,21 +33,13 @@
 
                 <dt>
                     <a name="def-hoster"></a>
-                    <span class="term">Hoster</span>
+                    <span class="term">Pinner</span>
                 </dt>
                 <dd>
-                    The hoster is the participant that will actually be pinning the file. They run
-                    a hoster daemon and a permanent IPFS node to pin the bidders' files.
-                </dd>
-
-                <dt>
-                    <a name="def-validator"></a>
-                    <span class="term">Validator</span>
-                </dt>
-                <dd>
-                    The validator the participant that basically keeps everyone honest.  They verify
-                    that the file is actually pinned by the hoster during the bidder's requested
-                    duration.
+                    The pinner is the participant that will actually be pinning the file. They run
+                    a <a href="https://github.com/mikeshultz/scatter-daemon">scatter daemon</a> and
+                    a permanent IPFS node to pin the bidders' files.  For every file, there are two
+                    pinners.
                 </dd>
             </dl>
         </section>
@@ -70,7 +61,7 @@
                 </li>
                 <li>
                     Scatter dapp - The dapp (decentralized application) is the interface that allows
-                    bidders to place bids for their files to be pinned by a hoster.
+                    bidders to place bids for their files to be pinned.
                 </li>
             </ul>
         </section>
@@ -111,27 +102,6 @@
         </section>
         <section id="status">
             <h2>Challenges</h2>
-            
-            <h3>Validation pool dilution</h3>
-            <p>
-                The validation pool is the pool of funds provided by the bidder to pay validators
-                for their work. The more validators that validate a pin, the lower the split between
-                the validators/
-            </p>
-            <pre><code>F = P/V</code></pre>
-            <p>
-                Where <code>F</code> is the fee payout, <code>P</code> is the validation pool funds,
-                and <code>V</code> is the participants acting as validators.
-            </p>
-            <p>
-                This should generally mean at some point it will not make sense for validators to
-                continue their work, which means it's up to the bidder to provide enough funds to
-                have their pin validated.
-            </p>
-            <p>
-                This mechanic is probably generally good enough but the bidder should be properly
-                instructed when choosing how much should be provided as a validation pool.
-            </p>
 
             <h3>Proving files have been pinned</h3>
             <p>
@@ -141,31 +111,56 @@
                 public.
             </p>
             <p>
-                For the daemon prototype,
-                <a href="https://github.com/mikeshultz/tornado-http-firewall">
-                    tornado-http-firewall
-                </a>
-                was created for use as a proxy to control access to the API calls. This is hopefully
-                <a href="https://github.com/ipfs/notes/issues/159">
-                    temporary as this functionality is planned for the IPFS daemon
-                </a>
-                but there's no way to know when (or if) that will be complete.
-            </p>
-            <p>
                 To add to the fun, these API calls can be spoofed or falsified pretty easily. A
                 malicious hoster could accept bids, and setup an API that responds showing that pins
                 were made when in fact nothing is actually there.  This is a lot of effort to go
                 through just to pretend to be actually hosting files, but would be a successful
-                attack that would lower the qulity of the network.
+                attack that would lower the qulity of the network.  This option has more or less
+                been ruled out, but may be an aditional layer of proof in the future when
+                <a href="https://github.com/ipfs/notes/issues/159">
+                    access control is implemented
+                </a>.
             </p>
             <p>
-                The validator could <code>ipfs swarm connect</code> to the hoster's IPFS node and
-                then verify they can successfully <code>get</code> the file, but that doesn't
-                prove that the file is pinned on a specific node, just that this specific node has
-                access to the file.  This may be a useful additional step along with the API,
-                however.
+                Instead, the primary form of validation is through "Mutually Assured Destruction."
+                If the two file pinners can not come to an agreement, both of their initial stakes
+                that they put up before pinning the file are burned.  This agreement requires
+                each participant to hash two pseudo-random (but repeatable) parts of the file,
+                provide half of each to the contract, and each pinner signs one.  If the hashes
+                can't be reassembled and the signatures verified by the contract, the "challenge"
+                is considered failed.
+            </p>
             <p>
-                As of right now, this problem is still being worked on.
+                This does leave a known hole in the process.  A pinner could in theory, keep a file
+                around just to hash and not offer it to the public IPFS network.  The bandwidth
+                savings is likely to be trivial compared to storage, so it's not likely to be overly
+                abused.  That said, it is a flaw in the proof that needs to be monitored.
+            </p>
+            <p>
+                For more details, read the 
+                <a href="https://github.com/mikeshultz/scatter-contracts/blob/sans-validators/docs/protocol.md">
+                    protocol white paper
+                </a>.  This document is continuously being updated as the protocl is refined.
+            </p>
+            
+            <h3>Collusion</h3>
+            <p>
+                Since the amount of pinners per file are currently fixed at 2, that leaves a
+                relatively small window for individuals to try and get two of their pinner accounts
+                to stake at the same time by sending out their transactions at the same time.  This
+                would allow them full control, acting as both pinners and validating each other.
+                They could either only host/pin one copy of the file, or use completely made up file
+                hashes for the challenge/defense validation protocol.
+            </p>
+            <p>
+                This can be made somewhat more difficult by <a href="https://github.com/mikeshultz/scatter-contracts/issues/3">
+                preventing stakes from landing on the same block</a>. But it is not a full-proof
+                method of preventing collusion.
+            </p>
+            <p>
+                It might be best to provide a pinner with the option of using a variable amount of
+                pinners, leaving them to determine their own level of risk.  But this adds a lot of
+                complexity and will be left out of v1 of Scatter.
             </p>
         </section>
     </div>
